@@ -1,0 +1,9 @@
+packages/
+App.config
+packages.config
+<<<<<<< HEAD
+bin/
+Debug/
+=======
+bin/
+>>>>>>> dda939154b0d94d84f9d848ffee3147199ed2d82
