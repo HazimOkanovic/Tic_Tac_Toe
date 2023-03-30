@@ -60,7 +60,7 @@ namespace Tik_Tac_Toe
             button.Content = playerTurn ? "X" : "0";
             
             if(playerTurn)
-                button.Background = Brushes.Red;
+                button.Foreground = Brushes.Red;
             playerTurn ^= true;
 
             CheckForWinner();
@@ -68,7 +68,71 @@ namespace Tik_Tac_Toe
 
         private void CheckForWinner()
         {
+            if (results[0] != MarkType.Free && (results[0] & results[1] & results[2]) == results[0])
+            {
+                gameEnded = true;
+
+                Button0_0.Background = Button1_0.Background = Button2_0.Background = Brushes.Green;
+            }
             
+            if (results[3] != MarkType.Free && (results[3] & results[4] & results[5]) == results[3])
+            {
+                gameEnded = true;
+
+                Button0_1.Background = Button1_1.Background = Button2_1.Background = Brushes.Green;
+            }
+            
+            if (results[6] != MarkType.Free && (results[6] & results[7] & results[8]) == results[6])
+            {
+                gameEnded = true;
+
+                Button0_2.Background = Button1_2.Background = Button2_2.Background = Brushes.Green;
+            }
+            
+            if (results[0] != MarkType.Free && (results[0] & results[3] & results[6]) == results[0])
+            {
+                gameEnded = true;
+
+                Button0_0.Background = Button0_1.Background = Button0_2.Background = Brushes.Green;
+            }
+            
+            if (results[1] != MarkType.Free && (results[1] & results[4] & results[7]) == results[1])
+            {
+                gameEnded = true;
+
+                Button1_0.Background = Button1_1.Background = Button1_2.Background = Brushes.Green;
+            }
+            
+            if (results[2] != MarkType.Free && (results[2] & results[5] & results[8]) == results[2])
+            {
+                gameEnded = true;
+
+                Button2_0.Background = Button2_1.Background = Button2_2.Background = Brushes.Green;
+            }
+            
+            if (results[0] != MarkType.Free && (results[0] & results[4] & results[8]) == results[0])
+            {
+                gameEnded = true;
+
+                Button0_0.Background = Button1_1.Background = Button2_2.Background = Brushes.Green;
+            }
+            
+            if (results[2] != MarkType.Free && (results[2] & results[4] & results[6]) == results[2])
+            {
+                gameEnded = true;
+
+                Button0_2.Background = Button1_1.Background = Button2_0.Background = Brushes.Green;
+            }
+
+            if (!results.Any(results => results == MarkType.Free))
+            {
+                gameEnded = true;
+                
+                Container.Children.Cast<Button>().ToList().ForEach(button =>
+                { 
+                    button.Background = Brushes.Orange;
+                });
+            }
         }
     }
 }
