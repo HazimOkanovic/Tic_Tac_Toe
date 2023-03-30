@@ -50,6 +50,25 @@ namespace Tik_Tac_Toe
 
             var column = Grid.GetColumn(button);
             var row = Grid.GetRow(button);
+
+            var index = column + (row * 3);
+            
+            if(results[index] != MarkType.Free)
+                return;
+
+            results[index] = playerTurn ? MarkType.Cross : MarkType.Nought;
+            button.Content = playerTurn ? "X" : "0";
+            
+            if(playerTurn)
+                button.Background = Brushes.Red;
+            playerTurn ^= true;
+
+            CheckForWinner();
+        }
+
+        private void CheckForWinner()
+        {
+            
         }
     }
 }
